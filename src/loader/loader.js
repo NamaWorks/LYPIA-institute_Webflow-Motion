@@ -55,13 +55,15 @@ function _runLoader() {
 
   } else {
     _showOverlayInstant(_loaderOverlay, _config.loaderColor, _config.loaderText);
-    gsap.set(_loaderOverlay.text, { opacity: 0, y: 15 });
-    gsap.to(_loaderOverlay.text, {
-      opacity: 1, y: 0,
-      duration: _config.duration * 0.7,
-      ease: _config.ease,
-      delay: 0.15
-    });
+    if (_config.loaderText) {
+      gsap.set(_loaderOverlay.text, { opacity: 0, y: 15 });
+      gsap.to(_loaderOverlay.text, {
+        opacity: 1, y: 0,
+        duration: _config.duration * 0.7,
+        ease: _config.ease,
+        delay: 0.15
+      });
+    }
     _onPageReady(() => {
       _overlayOut(_loaderOverlay, () => { _isTransitioning = false; });
     });
